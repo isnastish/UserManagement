@@ -25,10 +25,15 @@ class Application:
 
 
 # NOTE: This should be moved out from the application.
-def create_application() -> Application: # pass a config here which contains env variables.
+# And pass the config here as well which contains all env variables 
+def create_application() -> Application:
     sql_engine: Engine = create_engine()
     postgres_conn: Connection = sql_engine.connect()
 
     user_repo = PostgresUserRepository(postgres_conn) 
 
     commands = Commands(CreateUserHandler(user_repo))
+
+    queries = Queries()
+
+    return Application(commands, queries)
