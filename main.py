@@ -1,10 +1,18 @@
+from internal.domain.user import User
+
 from fastapi import FastAPI, Body
 
 app = FastAPI()
 
-@app.get("/hi")
-async def read_root(who: str = Body(embed=True)) -> dict[str, str]:
-    return {"Hello": who}
+
+users: list[User] = [
+    User(username="Alexey", email="alexey@gmail.com", password="password89"),
+    User(username="Fred", email="fred.b@gmail.com", password="unknowPass@")
+]
+
+@app.get("/users")
+async def read_root() -> list[User]:
+    return users 
 
 if __name__ == '__main__':
     import uvicorn
