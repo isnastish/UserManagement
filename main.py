@@ -1,6 +1,6 @@
 from internal.domain.user import User
 
-from fastapi import FastAPI, Body
+from fastapi import FastAPI
 
 app = FastAPI()
 
